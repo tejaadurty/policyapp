@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1684
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Policyservice", "Policyservice\Policyservice.csproj", "{DBE9176C-9B11-45C9-AF0A-5ADB19F6B824}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBE9176C-9B11-45C9-AF0A-5ADB19F6B824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBE9176C-9B11-45C9-AF0A-5ADB19F6B824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBE9176C-9B11-45C9-AF0A-5ADB19F6B824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBE9176C-9B11-45C9-AF0A-5ADB19F6B824}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8F893AD-121C-44D6-A6C1-5CBB86D21568}
+	EndGlobalSection
+EndGlobal
