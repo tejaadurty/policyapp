@@ -1,0 +1,390 @@
+﻿@model PolicyApp.Models.Policy
+@{
+    ViewBag.Title = "Policy general Information | ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="row" style="padding-bottom: 50px; margin-top: 55px;">
+    <div class="col-md-6 col-lg-6 col-xs-12 " style="align-items: center;">
+        <img src="~/assets/images/policy.jpg" class="sizeimage" />
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-12  mobile ">
+        <!--Start Contact Form-->
+      
+        @using (Html.BeginForm("Index", "Policyt", FormMethod.Post))
+        {
+            <div class="contact-form" style="float: right;">
+                <h3 class="letter1">Policy general Information form</h3>
+                <p class="letter2">Please fill out below details.</p>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-element">
+
+                            @*@Html.DropDownList("policylist", (IEnumerable<SelectListItem>)ViewBag.policylist, "Select Policy", new { @id = "policylist", @class = "form-control" })*@
+
+                            @Html.DropDownListFor(m => m.Policytype, (IEnumerable<SelectListItem>)ViewBag.policylist, "Select Policy", new { @id = "policylist", @class = "form-control", @onchange = "Policycontent()" })
+
+                            @*@Html.TextBoxFor(m => m.Policytype, new { placeholder = "Policytype.", @class = "form-control input-field ", @id = "Policytype" })*@
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group form-element">
+
+                            @Html.TextBoxFor(m => m.policyno, new { placeholder = "Policyno.", @class = "form-control input-field ", @id = "policyno", @readonly = true })
+                        </div>
+                    </div>
+
+                    <!-- Trigger/Open The Modal -->
+
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            @*<p> <input id="policycode" type="text" rows="5" /></p>*@
+                            <textarea id="policycode" class="form-control" style="min-width: 100%;resize:none;" readonly></textarea>
+
+                            <textarea id="policycodedate" class="form-control" style="min-width: 100%;resize:none;" readonly></textarea>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group form-element">
+
+                            @Html.TextBoxFor(m => m.PersonName, new { placeholder = "Name.", @class = "form-control input-field ", @id = "PersonName" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group form-element">
+
+                            @Html.DropDownList("Risktype", new List<SelectListItem>
+  {
+      new SelectListItem{ Text="Select Region", Value = "Select Region" },
+      new SelectListItem{ Text="Urban", Value = "Urban" },
+      new SelectListItem{ Text="Rural", Value = "Rural" },
+   },new {@id= "Risktype" , @class = "form-control input-field " })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-element">
+
+                            @Html.TextBoxFor(m => m.city, new { placeholder = "City.", @class = "form-control input-field ", @id = "city" })
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group form-element">
+
+                            @Html.TextBoxFor(m => m.Address, new { placeholder = "Address.", @class = "form-control input-field ", @id = "Address" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="contact-frm-btn">
+
+                    <input id="btnsubmit" type="submit" value="Submit" onclick="return checkvalidation();" class="mr_btn_fill" />
+
+                </div>
+
+
+            </div>
+        }
+        <input id="myBtn" type="button" style="display:none;" value="Open Modal" />
+        <!--End Contact Form-->
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-12" style="align-items: center">
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-12" style="align-items: center">
+        @if (ViewBag.returndata != null)
+        {
+            <h3 class="letter1">Policy Person details</h3>
+            <div class="table-responsive  mobile" style="padding-top: 10px;">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>PolicyNo</th>
+                            <th>Policy Name</th>
+                            <th>Risk Region</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                        </tr>
+
+
+                        @foreach (var item in (IEnumerable<PolicyApp.Models.Policy>)ViewBag.returndata)
+                        {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.policyno)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Policytype)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Risktype)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PersonName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.city),  @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+
+                            <td>
+
+
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<style>
+
+    .toast-top-center {
+        margin: 0 auto;
+        left: 50%;
+        color: white;
+    }
+
+    .tost-class {
+        /*background-color: #ff2d55;*/
+        background-color: black;
+        width: 500px !important;
+    }
+</style>
+<script>
+    function failure(message) {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "progressBar": true,
+            "preventDuplicates": false,
+            "positionClass": "toast-top-right",
+            "showDuration": "400",
+            "hideDuration": "1000",
+            "timeOut": "2000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr["error"](message);
+
+    }
+    function success(message) {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "progressBar": true,
+            "preventDuplicates": false,
+            "positionClass": "toast-top-right",
+            "showDuration": "400",
+            "hideDuration": "1000",
+            "timeOut": "2000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr["success"](message);
+
+    }
+</script>
+
+
+<script type="text/javascript">
+    function checkvalidation() {
+        if (document.getElementById("policylist").value == "") {
+         
+            document.getElementById("policylist").focus();
+
+            failure("select policylist");
+            return false;
+        }
+        else if (document.getElementById("policyno").value == "") {
+            document.getElementById("policyno").focus();
+            failure("Enter Policy Number");
+            return false;
+        }
+
+      
+
+        else if (document.getElementById("PersonName").value == "") {
+            document.getElementById("PersonName").focus();
+
+          
+            failure("Enter Name");
+            return false;
+        }
+        else if (document.getElementById("Risktype").value == "Select Region") {
+            document.getElementById("Risktype").focus();
+
+          
+            failure("Select your region");
+            return false;
+        }
+        
+        else if (document.getElementById("city").value == "") {
+            document.getElementById("city").focus();
+
+          
+            failure("Enter City");
+            return false;
+        }
+        else if (document.getElementById("Address").value == "") {
+            document.getElementById("Address").focus();
+
+            failure("Enter Address");
+            return false;
+        }
+       
+
+        
+
+    }
+
+
+</script>
+
+
+<script type="text/javascript">
+
+
+    function Policycontent() {
+        var chars = "0123456789";
+
+        var string_length = 5;
+
+        var code = "";
+
+        for (var i = 0; i < string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+
+            code += chars.substring(rnum, rnum + 1);
+        }
+
+        var txt = document.getElementById('policycode');
+        var date = document.getElementById('policycodedate');
+        var policycodenu = document.getElementById("policyno");
+
+        if (document.getElementById("policylist").value == "PA") {
+            policycodenu.value = "PA" + code;
+            txt.value = "Dear applicant you have choosed Personal Auto policy ";
+            date.value = "This term effects from Jan 2021 and expires on Jan 2022";
+            // alert(txt.value);
+        }
+        else if (document.getElementById("policylist").value == "HO") {
+            policycodenu.value = "HO" + code;
+            txt.value = "Dear applicant you have choosed Home Owners";
+            date.value = "This term effects from Feb 2021 and expires on Feb 2022";
+            // alert(txt.value);
+        }
+        else if (document.getElementById("policylist").value == "BO") {
+            policycodenu.value = "BO" + code;
+            txt.value = "Dear applicant you have choosed Business Owners";
+            date.value = "This term effects from Mar 2021 and expires on Mar 2022";
+            // alert(txt.value);
+        }
+
+        //txt.value = document.getElementById("policylist").value;
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+
+
+        // alert(code);
+
+
+    }
+</script>
+
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: absolute; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+
+

@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Jarus</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    <title>Jarus</title>
+    <!--Favicon-->
+   
+    <!--Bootstrap Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.css">
+    <!--Font Awesome Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+    <!-- flat icon  -->
+    <link rel="stylesheet" type="text/css" href="~/assets/fonts/flaticon.css">
+    <!--Animate Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.css">
+    <!--Main Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <!--Responsive Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/responsive.css">
+    <!--Modanizr JS-->
+    <script src="~/assets/js/modernizr.custom.js"></script>
+    <style>
+        @@media screen and (max-width:640px) {
+            .sizeimage {
+                height: 420px;
+                margin-left: -79px;
+                position: absolute;
+                margin-top: -72px;
+                width: 136%;
+            }
+
+            .contact-form {
+                background: #0000008a;
+                color: white;
+                margin: 1px;
+                /* padding-left: 20px; */
+                padding: 10px;
+                padding-top: 0px;
+            }
+
+            .footletter {
+                margin-top: 0px;
+            }
+
+            .letter1 {
+                font-size: 20px !important;
+            }
+
+            .container_login {
+                margin-bottom: -135px;
+            }
+
+            .letter2 {
+                margin-top: -25px !important;
+                font-size: 13px !important;
+            }
+
+            .letter3 {
+                color: white;
+                text-anchor: start;
+            }
+
+
+            .contct-form {
+                /*align-items: center;
+                margin-left: -85px;
+                margin-right: 85px;*/
+                float: right;
+                background: #1a6ab166;
+                margin-top: -50px;
+            }
+            .modal {
+                margin-left: 20px !important;
+                width: 90% !important;
+            }
+            .close {
+                padding-left: 245px;
+                color:red !important;
+            }
+           
+        }
+
+        @@media screen and (min-width:641px) {
+            .sizeimage {
+                height: 370px;
+                margin-left: -47px;
+                position: absolute;
+            }
+        }
+
+        .contact-wrap {
+            margin-bottom: 28px;
+        }
+    </style>
+
+    <style>
+        @@media only screen and (max-device-width: 400px) {
+
+            .mobile {
+                width: 41%
+            }
+            
+        }
+        @@media only screen and (max-device-width: 320px) {
+
+            .mobile {
+                width: 34%
+            }
+           
+        }
+        @@media only screen and (max-device-width: 575px) {
+
+            .mobile {
+                width: 45%
+            }
+            .footercenter {
+                margin-left: -10px;
+            }
+            
+        }
+    </style>
+</head>
+
+<body class="body-class index_1">
+    <!--Start Preloader-->
+    @*<div class="site-preloader">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>*@
+    <!--End Preloader-->
+    <!--Start Body Wrap-->
+    <div id="body-wrap">
+        <!--Start Header-->
+        <header id="mainHeader" class="header">
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light p-0" style="background-color: #ff2d55">
+                <div class="container">
+                    <a class="navbar-brand" href="~/Policyt/Index">
+                        <img class="logo-dark" src="https://jarustech.com/Content/images/Jarus-Logo.svg" style="height: 70px; width: auto;" alt="Jarus">
+                        <img class="logo-light" src="https://jarustech.com/Content/images/Jarus-Logo.svg" style="height: 70px; width: auto;" alt="Jarus">
+                    </a>
+                 
+                </div>
+            </nav>
+            <!-- End Navigation -->
+            <div class="clearfix"></div>
+        </header>
+        <!--End Header-->
+        <!--Start Contact Wrap-->
+        <div class="contact-wrap">
+            <!--Start Container-->
+            <div class="container container_login">
+                <!--Contact Map-->
+                <!--Start Row-->
+              
+                 
+                @RenderBody()
+                    
+            
+                <!--End Row-->
+            </div>
+            <!--End Container-->
+        </div>
+        <!--End Contact Wrap-->
+        <!--End Page Content-->
+        <!-- google map area start -->
+        <!-- google map area end -->
+        <!--Start Footer-->
+        <footer class="footer ">
+            <!--Start Footer Top-->
+            <!--End Footer Top-->
+            <!--Start Footer Bottom-->
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 footletter">
+                            <div class="copyright-text mobile footercenter">
+                                <p class="color-white">Copyright &copy; @DateTime.Now.Year All Rights Reserved, Powered by </p>
+                                <a href="~/Policyt/Index"><span>Jarus</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Footer Bottom-->
+            <!--Start ClickToTop-->
+            <div class="totop">
+                <a href="#top"><i class="fa fa-arrow-up"></i></a>
+            </div>
+            <!--End ClickToTop-->
+        </footer>
+        <!--End Footer-->
+    </div>
+    <!--End Body Wrap-->
+    <!--jQuery JS-->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <!--Bootstrap JS-->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <!-- google map -->
+    <script src="~/assets/js/contact-map-active.js"></script>
+    <!--Google map JS-->
+    <!-- Calender JS-->
+ 
+  
+
+
+</body>
+
+</html>
